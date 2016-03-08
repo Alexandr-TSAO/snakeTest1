@@ -11,9 +11,14 @@ namespace SnakeTest1
         static void Main(string[] args)
         {
             Point p1 = new Point(1, 2, '*');
-            p1.Draw();
+ //           p1.Draw();
             Point p2 = new Point(3, 4, '#');
-            p2.Draw();
+ //           p2.Draw();
+
+
+            Wall W = new Wall(2, 4, 3, 5, '#');
+            W.Draw();
+
             Console.ReadLine();
         }
     }
