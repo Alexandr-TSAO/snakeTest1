@@ -10,7 +10,7 @@ namespace SnakeTest1
     {
         static void Main(string[] args)
         {
-            Point p1 = new Point(1, 2, '*');
+            Point p1 = new Point(10, 12, '*');
  //           p1.Draw();
             Point p2 = new Point(3, 4, '#');
  //           p2.Draw();
@@ -18,6 +18,9 @@ namespace SnakeTest1
 
             Wall W = new Wall(2, 4, 3, 5, '#');
             W.Draw();
+
+            Snake S = new Snake(p1, 5, Directional.RIGHT);
+            S.Draw();
 
             Console.ReadLine();
         }
