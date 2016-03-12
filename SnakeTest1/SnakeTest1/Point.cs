@@ -49,12 +49,27 @@ namespace SnakeTest1
         public void Draw()
         {
             Console.SetCursorPosition(x, y);
-            Console.WriteLine(sym);
+            Console.Write(sym);
+            Console.SetCursorPosition(0, 24);
+           
         }
 
         public override string ToString()
         {
             return  x.ToString() + "," + y.ToString() + "," + sym.ToString();
+        }
+
+        public void Clean()
+        {
+            sym = ' ';
+            this.Draw();
+        }
+
+        public bool Coincides(Point p)
+        {
+            if ((this.x == p.x) && (this.y == p.y))
+                return true;
+            else return false;
         }
     }
 }

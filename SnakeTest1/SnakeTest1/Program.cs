@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SnakeTest1
@@ -10,17 +11,47 @@ namespace SnakeTest1
     {
         static void Main(string[] args)
         {
-            Point p1 = new Point(10, 12, '*');
- //           p1.Draw();
-            Point p2 = new Point(3, 4, '#');
- //           p2.Draw();
 
+            Console.SetBufferSize( 80, 25);
 
-            Wall W = new Wall(2, 4, 3, 5, '#');
-            W.Draw();
+            Wall W1 = new Wall(0, 0, 0, 24, '#');
+            Wall W2 = new Wall(79, 79, 0, 24, '#');
+            Wall W3 = new Wall(0, 79, 24, 24, '#');
+            Wall W4 = new Wall(0, 79, 0, 0, '#');
 
-            Snake S = new Snake(p1, 5, Directional.RIGHT);
+            W1.Draw();
+            W2.Draw();
+            W3.Draw();
+            W4.Draw();
+
+            Console.CursorVisible = false;
+            Point p1 = new Point(15, 12, '*');
+            Snake S = new Snake(p1, 20, Directional.RIGHT);
             S.Draw();
+
+            FootCreator FoodCreate = new FootCreator(80, 25, '$');
+            Point foot = FoodCreate.Foot(S);
+            foot.Draw();
+                       
+            while(true)
+            {
+                if (S.Eat(foot))
+                {
+                    foot = FoodCreate.Foot(S);
+                    foot.Draw();
+                }
+                if (Console.KeyAvailable)
+                {
+                    ConsoleKeyInfo key = Console.ReadKey();
+                    while (Console.KeyAvailable) key = Console.ReadKey();
+                    S.ContronSnake(key.Key);
+                }
+                
+                S.Mowe();
+                
+                Thread.Sleep(100);
+            }
+           
 
             Console.ReadLine();
         }
